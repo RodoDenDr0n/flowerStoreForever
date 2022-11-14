@@ -1,19 +1,35 @@
 package com.example.flowerstore.flower;
 
+import com.example.flowerstore.items.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter @AllArgsConstructor
-public class Flower {
-    @Getter
+import javax.persistence.*;
+import java.util.concurrent.Flow;
+
+@Setter @Getter @Entity
+@Table(name = "flower")
+@NoArgsConstructor
+public class Flower extends Item {
+    @Id
+    @GeneratedValue
+    private Integer id;
+    @Enumerated(EnumType.STRING)
     private FlowerType flowerType;
+    @Enumerated(EnumType.STRING)
     private FlowerColor color;
-    @Getter
     private double price;
-    @Getter
     private double sepalLength;
-    public Flower() {}
+
+
+//    public Flower(FlowerColor color, int sepalLength, double price) {
+//        this.color = color;
+//        this.sepalLength = sepalLength;
+//        this.price = price;
+//    }
+
     public String getColor() {
         return color.toString();
     }
